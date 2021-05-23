@@ -6,9 +6,13 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 class Locators:
     AGILE_METHODOLOGY_TAG = (By.CLASS_NAME, "tag-id-368")
+    COOKIE_BUTTON = (By.ID, "cn-accept-cookie")
 
 
 class ClickHelper(BasePage):
+
+    def click_cookie_button(self):
+        return self.find_element(Locators.COOKIE_BUTTON, time=2).click()
 
     def click_agile_methodology_tag(self):
         return self.find_element(Locators.AGILE_METHODOLOGY_TAG, time=2).click()
