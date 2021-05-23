@@ -8,6 +8,7 @@ options = Options()
 options.add_argument('--headless')
 options.add_argument('--no-sandbox')
 options.add_argument('--disable-setuid-sandbox')
+options.add_argument('--start-maximized')
 
 
 def pytest_addoption(parser):
