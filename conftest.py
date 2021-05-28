@@ -13,9 +13,10 @@ options.add_argument('--start-maximized')
 
 def pytest_addoption(parser):
     parser.addoption("--driver", action="store", default="Chrome")
-    parser.addoption("--url", action="store", default="https://inoxoft.com/blog/", help="url")
+    parser.addoption("--url", action="store", default="https://inoxoft.com", help="url")
     parser.addoption("--username", action="store", default="manager", help="username")
     parser.addoption("--password", action="store", default="test", help="password")
+
 
 
 def _select_firefox_driver(os):
@@ -44,6 +45,11 @@ def get_driver(browser_name, os):
 
 
 @pytest.fixture(scope="session")
+def url(pytestconfig):
+    return pytestconfig.getoption("--url")
+
+
+@pytest.fixture(scope="session")
 def browser(pytestconfig):
     os = platform.system()
     browser_name = pytestconfig.getoption("driver")
@@ -51,5 +57,6 @@ def browser(pytestconfig):
 
     yield driver
     driver.quit()
+
 
 
